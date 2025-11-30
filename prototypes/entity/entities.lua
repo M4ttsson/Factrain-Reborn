@@ -1,4 +1,4 @@
-local infinity_chest = util.table.deepcopy(data.raw["logistic-container"])
+local infinity_chest = util.table.deepcopy(data.raw["logistic-container"]["storage-chest"])
 infinity_chest.type = "infinity-container"
 infinity_chest.name = "infinity-chest"
 infinity_chest.order = "infinity-chest"

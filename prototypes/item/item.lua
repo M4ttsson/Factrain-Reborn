@@ -453,7 +453,7 @@ data:extend(
   },
   {
     type = "item",
-    name = "logistic-chest-passive-provider",
+    name = "passive-provider-chest",
     icon = "__base__/graphics/icons/passive-provider-chest.png",
     icon_size = 64,
     subgroup = "logistic-network",
@@ -463,7 +463,7 @@ data:extend(
   },
   {
     type = "item",
-    name = "logistic-chest-active-provider",
+    name = "active-provider-chest",
     icon = "__base__/graphics/icons/active-provider-chest.png",
     icon_size = 64,
     subgroup = "logistic-network",
@@ -473,7 +473,7 @@ data:extend(
   },
   {
     type = "item",
-    name = "logistic-chest-storage",
+    name = "storage-chest",
     icon = "__base__/graphics/icons/storage-chest.png",
     icon_size = 64,
     subgroup = "logistic-network",
@@ -483,7 +483,7 @@ data:extend(
   },
   {
     type = "item",
-    name = "logistic-chest-buffer",
+    name = "buffer-chest",
     icon = "__base__/graphics/icons/buffer-chest.png",
     icon_size = 64,
     subgroup = "logistic-network",
@@ -493,7 +493,7 @@ data:extend(
   },
   {
     type = "item",
-    name = "logistic-chest-requester",
+    name = "requester-chest",
     icon = "__base__/graphics/icons/requester-chest.png",
     icon_size = 64,
     subgroup = "logistic-network",
@@ -632,12 +632,8 @@ data:extend(
     stackable = false,
     draw_label_for_cursor_render = true,
     item_to_clear = "electronic-circuit",
-    selection_color = { r = 0, g = 1, b = 0 },
-    alt_selection_color = { r = 0, g = 1, b = 0 },
-    select = { mode = "blueprint", border_color = {r=1, g=0, b=0, a=1}, cursor_box_type = "blueprint-snap-rectangle"},
-    alt_select = { mode = "blueprint", border_color = {r=1, g=0, b=0, a=1}, cursor_box_type = "blueprint-snap-rectangle"},
-    selection_cursor_box_type = "copy",
-    alt_selection_cursor_box_type = "copy",
+    select = { mode = "blueprint", border_color = { r = 0, g = 1, b = 0 }, cursor_box_type = "copy"},
+    alt_select = { mode = "blueprint", border_color = { r = 0, g = 1, b = 0 }, cursor_box_type = "copy"},
   },
   {
     type = "deconstruction-item",
