@@ -62,32 +62,12 @@ data:extend(
   },
   {
     type = "item",
-    name = "filter-inserter",
-    icon = "__base__/graphics/icons/filter-inserter.png",
+    name = "bulk-inserter",
+    icon = "__base__/graphics/icons/bulk-inserter.png",
     icon_size = 64,
     subgroup = "inserter",
-    order = "e[filter-inserter]",
-    place_result = "filter-inserter",
-    stack_size = 500
-  },
-  {
-    type = "item",
-    name = "stack-inserter",
-    icon = "__base__/graphics/icons/stack-inserter.png",
-    icon_size = 64,
-    subgroup = "inserter",
-    order = "f[stack-inserter]",
-    place_result = "stack-inserter",
-    stack_size = 500
-  },
-  {
-    type = "item",
-    name = "stack-filter-inserter",
-    icon = "__base__/graphics/icons/stack-filter-inserter.png",
-    icon_size = 64,
-    subgroup = "inserter",
-    order = "g[stack-filter-inserter]",
-    place_result = "stack-filter-inserter",
+    order = "f[bulk-inserter]",
+    place_result = "bulk-inserter",
     stack_size = 500
   },
   {
@@ -169,19 +149,7 @@ data:extend(
     order = "a[train-system]-a[rail]",
     place_result = "straight-rail",
     stack_size = 500,
-    straight_rail = "straight-rail",
-    curved_rail = "curved-rail"
-  },
-  {
-    type = "item",
-    name = "player-port",
-    icon = "__base__/graphics/icons/player-port.png",
-    icon_size = 64,
-    flags = {"hidden"},
-    subgroup = "defensive-structure",
-    order = "z[not-used]",
-    place_result = "player-port",
-    stack_size = 50
+    rails = {"straight-rail", "curved-rail-a", "curved-rail-b", "half-diagonal-rail"}
   },
   {
     type = "item",
@@ -417,7 +385,7 @@ data:extend(
     name = "loader",
     icon = "__base__/graphics/icons/loader.png",
     icon_size = 64,
-    flags = {"hidden"},
+    hidden = true,
     subgroup = "belt",
     order = "d[loader]-a[basic-loader]",
     place_result = "loader",
@@ -428,7 +396,7 @@ data:extend(
     name = "fast-loader",
     icon = "__base__/graphics/icons/fast-loader.png",
     icon_size = 64,
-    flags = {"hidden"},
+    hidden = true,
     subgroup = "belt",
     order = "d[loader]-b[fast-loader]",
     place_result = "fast-loader",
@@ -439,7 +407,7 @@ data:extend(
     name = "express-loader",
     icon = "__base__/graphics/icons/express-loader.png",
     icon_size = 64,
-    flags = {"hidden"},
+    hidden = true,
     subgroup = "belt",
     order = "d[loader]-c[express-loader]",
     place_result = "express-loader",
@@ -486,51 +454,51 @@ data:extend(
   {
     type = "item",
     name = "logistic-chest-passive-provider",
-    icon = "__base__/graphics/icons/logistic-chest-passive-provider.png",
+    icon = "__base__/graphics/icons/passive-provider-chest.png",
     icon_size = 64,
     subgroup = "logistic-network",
-    order = "b[storage]-c[logistic-chest-passive-provider]",
-    place_result = "logistic-chest-passive-provider",
+    order = "b[storage]-c[passive-provider-chest]",
+    place_result = "passive-provider-chest",
     stack_size = 50
   },
   {
     type = "item",
     name = "logistic-chest-active-provider",
-    icon = "__base__/graphics/icons/logistic-chest-active-provider.png",
+    icon = "__base__/graphics/icons/active-provider-chest.png",
     icon_size = 64,
     subgroup = "logistic-network",
-    order = "b[storage]-c[logistic-chest-active-provider]",
-    place_result = "logistic-chest-active-provider",
+    order = "b[storage]-c[active-provider-chest]",
+    place_result = "active-provider-chest",
     stack_size = 50
   },
   {
     type = "item",
     name = "logistic-chest-storage",
-    icon = "__base__/graphics/icons/logistic-chest-storage.png",
+    icon = "__base__/graphics/icons/storage-chest.png",
     icon_size = 64,
     subgroup = "logistic-network",
-    order = "b[storage]-c[logistic-chest-storage]",
-    place_result = "logistic-chest-storage",
+    order = "b[storage]-c[storage-chest]",
+    place_result = "storage-chest",
     stack_size = 50
   },
   {
     type = "item",
     name = "logistic-chest-buffer",
-    icon = "__base__/graphics/icons/logistic-chest-buffer.png",
+    icon = "__base__/graphics/icons/buffer-chest.png",
     icon_size = 64,
     subgroup = "logistic-network",
-    order = "b[storage]-d[logistic-chest-buffer]",
-    place_result = "logistic-chest-buffer",
+    order = "b[storage]-d[buffer-chest]",
+    place_result = "buffer-chest",
     stack_size = 50
   },
   {
     type = "item",
     name = "logistic-chest-requester",
-    icon = "__base__/graphics/icons/logistic-chest-requester.png",
+    icon = "__base__/graphics/icons/requester-chest.png",
     icon_size = 64,
     subgroup = "logistic-network",
-    order = "b[storage]-e[logistic-chest-requester]",
-    place_result = "logistic-chest-requester",
+    order = "b[storage]-e[requester-chest]",
+    place_result = "requester-chest",
     stack_size = 50
   },
   {
@@ -558,7 +526,7 @@ data:extend(
     name = "coin",
     icon = "__base__/graphics/icons/coin.png",
     icon_size = 64,
-    flags = {"hidden"},
+    hidden = true,
     subgroup = "science-pack",
     order = "y",
     stack_size = 100000
@@ -666,8 +634,8 @@ data:extend(
     item_to_clear = "electronic-circuit",
     selection_color = { r = 0, g = 1, b = 0 },
     alt_selection_color = { r = 0, g = 1, b = 0 },
-    selection_mode = {"blueprint"},
-    alt_selection_mode = {"blueprint"},
+    select = { mode = "blueprint", border_color = {r=1, g=0, b=0, a=1}, cursor_box_type = "blueprint-snap-rectangle"},
+    alt_select = { mode = "blueprint", border_color = {r=1, g=0, b=0, a=1}, cursor_box_type = "blueprint-snap-rectangle"},
     selection_cursor_box_type = "copy",
     alt_selection_cursor_box_type = "copy",
   },
@@ -681,12 +649,8 @@ data:extend(
     stack_size = 1,
     entity_filter_count = 30,
     tile_filter_count = 30,
-    selection_color = { r = 1, g = 0, b = 0 },
-    alt_selection_color = { r = 0, g = 0, b = 1 },
-    selection_mode = {"deconstruct"},
-    alt_selection_mode = {"cancel-deconstruct"},
-    selection_cursor_box_type = "not-allowed",
-    alt_selection_cursor_box_type = "not-allowed",
+    select = { mode = "deconstruct", border_color = { r = 1, g = 0, b = 0 }, cursor_box_type = "not-allowed"},
+    alt_select = { mode = "cancel-deconstruct", border_color = { r = 0, g = 0, b = 1 }, cursor_box_type = "not-allowed"}
   },
   {
     type = "blueprint-book",
@@ -913,7 +877,7 @@ data:extend(
     name = "rocket-part",
     icon = "__base__/graphics/icons/rocket-part.png",
     icon_size = 64,
-    flags = {"hidden"},
+    hidden = true,
     subgroup = "intermediate-product",
     order = "q[rocket-part]",
     stack_size = 5
@@ -940,7 +904,7 @@ data:extend(
     {
       result = "concrete",
       condition_size = 1,
-      condition = { "water-tile" }
+      condition = {layers = { water_tile = true}}
     }
   },
   {
@@ -955,7 +919,7 @@ data:extend(
     {
       result = "refined-concrete",
       condition_size = 1,
-      condition = { "water-tile" }
+      condition = {layers = { water_tile = true}}
     }
   },
   {
@@ -970,7 +934,7 @@ data:extend(
     {
       result = "hazard-concrete-left",
       condition_size = 1,
-      condition = { "water-tile" }
+      condition = {layers = { water_tile = true}}
     }
   },
   {
@@ -985,7 +949,7 @@ data:extend(
     {
       result = "refined-hazard-concrete-left",
       condition_size = 1,
-      condition = { "water-tile" }
+      condition = {layers = { water_tile = true}}
     }
   },
   {
@@ -1000,7 +964,7 @@ data:extend(
     {
       result = "grass-1",
       condition_size = 1,
-      condition = { "ground-tile" }
+      condition = {layers = { ground_tile = true}}
     }
   },
   {
@@ -1010,17 +974,13 @@ data:extend(
     localised_name = {"item-name.blueprint"},
     icon = "__base__/graphics/icons/blueprint.png",
     icon_size = 64,
-    flags = {"hidden"},
+    hidden = true,
     subgroup = "tool",
     order = "c[automated-construction]-a[blueprint]",
     stack_size = 1,
     stackable = false,
-    selection_color = { r = 0, g = 1, b = 0 },
-    alt_selection_color = { r = 0, g = 1, b = 0 },
-    selection_mode = {"blueprint"},
-    alt_selection_mode = {"blueprint"},
-    selection_cursor_box_type = "copy",
-    alt_selection_cursor_box_type = "copy",
+    select = { mode =  "blueprint", border_color = { r = 0, g = 1, b = 0 }, cursor_box_type = "copy"},
+    alt_select = { mode =  "blueprint", border_color = { r = 0, g = 1, b = 0 }, cursor_box_type = "copy"},
     show_in_library = false
   },
   {
@@ -1028,7 +988,7 @@ data:extend(
     name = "electric-energy-interface",
     icons = { {icon = "__base__/graphics/icons/accumulator.png", tint = {r=1, g=0.8, b=1, a=1}} },
     icon_size = 64,
-    flags = {"hidden"},
+    hidden = true,
     subgroup = "energy",
     order = "e[electric-energy-interface]-b[electric-energy-interface]",
     place_result = "electric-energy-interface",
@@ -1137,7 +1097,7 @@ data:extend(
     name = "simple-entity-with-force",
     icon = "__base__/graphics/icons/steel-chest.png",
     icon_size = 64,
-    flags = {"hidden"},
+    hidden = true,
     subgroup = "other",
     order = "s[simple-entity-with-force]-f[simple-entity-with-force]",
     place_result = "simple-entity-with-force",
@@ -1148,7 +1108,7 @@ data:extend(
     name = "simple-entity-with-owner",
     icon = "__base__/graphics/icons/wooden-chest.png",
     icon_size = 64,
-    flags = {"hidden"},
+    hidden = true,
     subgroup = "other",
     order = "s[simple-entity-with-owner]-o[simple-entity-with-owner]",
     place_result = "simple-entity-with-owner",
@@ -1159,7 +1119,7 @@ data:extend(
     name = "item-with-tags",
     icon = "__base__/graphics/icons/wooden-chest.png",
     icon_size = 64,
-    flags = {"hidden"},
+    hidden = true,
     subgroup = "other",
     order = "s[item-with-tags]-o[item-with-tags]",
     stack_size = 1
@@ -1169,7 +1129,7 @@ data:extend(
     name = "item-with-label",
     icon = "__base__/graphics/icons/wooden-chest.png",
     icon_size = 64,
-    flags = {"hidden"},
+    hidden = true,
     subgroup = "other",
     order = "s[item-with-label]-o[item-with-label]",
     stack_size = 1
@@ -1179,7 +1139,7 @@ data:extend(
     name = "item-with-inventory",
     icon = "__base__/graphics/icons/wooden-chest.png",
     icon_size = 64,
-    flags = {"hidden"},
+    hidden = true,
     subgroup = "other",
     order = "s[item-with-inventory]-o[item-with-inventory]",
     stack_size = 1,
@@ -1190,7 +1150,7 @@ data:extend(
     name = "infinity-chest",
     icon = "__base__/graphics/icons/infinity-chest.png",
     icon_size = 64,
-    flags = {"hidden"},
+    hidden = true,
     subgroup = "other",
     order = "t[item]-o[infinity-chest]",
     stack_size = 50,

@@ -33,7 +33,7 @@ end)
 --]]
 
 script.on_init(function()
-  global.version = version
+  storage.version = version
   silo_script.on_init()
 end)
 
@@ -42,8 +42,8 @@ script.on_event(defines.events.on_rocket_launched, function(event)
 end)
 
 script.on_configuration_changed(function(event)
-  if global.version ~= version then
-    global.version = version
+  if storage.version ~= version then
+    storage.version = version
   end
   silo_script.on_configuration_changed(event)
 end)
